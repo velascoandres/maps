@@ -32,9 +32,35 @@ class _MapPageState extends State<MapPage> {
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
+          _createZoomInButton(),
+          SizedBox(
+            height: 10,
+          ),
+          _createZoomOutButton(),
+          SizedBox(
+            height: 10,
+          ),
           _createMapStyleMenuButton(),
         ],
       ),
+    );
+  }
+
+  Widget _createZoomInButton() {
+    return FloatingActionButton(
+      onPressed: () => mapController.animateCamera(
+        CameraUpdate.zoomIn(),
+      ),
+      child: Icon(Icons.zoom_in),
+    );
+  }
+
+  Widget _createZoomOutButton() {
+    return FloatingActionButton(
+      onPressed: () => mapController.animateCamera(
+        CameraUpdate.zoomOut(),
+      ),
+      child: Icon(Icons.zoom_in),
     );
   }
 
