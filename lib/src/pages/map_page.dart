@@ -29,39 +29,45 @@ class _MapPageState extends State<MapPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _createMap(),
-      floatingActionButton: PopupMenuButton(
-        onSelected: (value) => setState(() => selectedStyle = value),
-        icon: Container(
-          height: double.infinity,
-          width: double.infinity,
-          child: Icon(Icons.style),
-          decoration: ShapeDecoration(
-            color: Colors.blue,
-            shape: StadiumBorder(
-              side: BorderSide(color: Colors.white, width: 1),
-            ),
-          ),
-        ),
-        itemBuilder: (context) {
-          return [
-            PopupMenuItem(
-              value: darkStyle,
-              child: Text('Dark'),
-              // onPressed: () => setState(() => selectedStyle = darkStyle),
-            ),
-            PopupMenuItem(
-              value: satelliteStyle,
-              child: Text('Satellite'),
-              // onPressed: () => setState(() => selectedStyle = satelliteStyle),
-            ),
-            PopupMenuItem(
-              value: basicStyle,
-              child: Text('Basic'),
-              //  onPressed: () => setState(() => selectedStyle = basicStyle),
-            )
-          ];
-        },
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          _createMapStyleMenuButton(),
+        ],
       ),
+    );
+  }
+
+  PopupMenuButton<String> _createMapStyleMenuButton() {
+    return PopupMenuButton(
+      onSelected: (value) => setState(() => selectedStyle = value),
+      tooltip: 'Map Style',
+      child: FloatingActionButton(
+        onPressed: null,
+        child: Icon(Icons.style),
+      ),
+      itemBuilder: (context) {
+        return [
+          CheckedPopupMenuItem(
+            checked: selectedStyle == darkStyle,
+            value: darkStyle,
+            child: Text('Dark'),
+            // onPressed: () => setState(() => selectedStyle = darkStyle),
+          ),
+          CheckedPopupMenuItem(
+            checked: selectedStyle == satelliteStyle,
+            value: satelliteStyle,
+            child: Text('Satellite'),
+            // onPressed: () => setState(() => selectedStyle = satelliteStyle),
+          ),
+          CheckedPopupMenuItem(
+            checked: selectedStyle == basicStyle,
+            value: basicStyle,
+            child: Text('Basic'),
+            //  onPressed: () => setState(() => selectedStyle = basicStyle),
+          )
+        ];
+      },
     );
   }
 
