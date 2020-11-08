@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-//       'pk.eyJ1IjoidmVsYXNjb2FuZHJzIiwiYSI6ImNrZ3BndXJzbzBtbHAyeW10ZDJod3MyYmgifQ.aCaJiR5X3F-hMbNe8cZpFw'
+import 'src/pages/map_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,11 +13,7 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: Text('Mapas'),
         ),
-        body: Center(
-          child: Container(
-            child: Text('Hello World'),
-          ),
-        ),
+        body: MapPage()
       ),
     );
   }
